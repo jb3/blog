@@ -55,64 +55,85 @@ const DEFAULT_DESCRIPTION =
 		<div class="body-sep"></div>
 
 		<Footer />
-	</body><style is:global>
-		:root {
-			--link-active: #0070f3;
-			--link-hover: #6089d6;
-			--dimmed: #757575;
-			--primary: #111;
-			--bg: #fff;
-		}
 
-		@media (prefers-color-scheme: dark) {
+		<style is:global>
 			:root {
-				--primary: #fff;
-				--bg: #111;
-				--link-active: #7998ff;
-				--link-hover: #a8c8e6;
+				--link-active: #0070f3;
+				--link-hover: #6089d6;
+				--dimmed: #757575;
+				--primary: #111;
+				--bg: #fff;
 			}
-		}
 
-		html {
-			font-family: "Ubuntu Mono", monospace;
-			color: var(--primary);
-			background-color: var(--bg);
+			@media (prefers-color-scheme: dark) {
+				:root {
+					--primary: #fff;
+					--bg: #111;
+					--link-active: #7998ff;
+					--link-hover: #a8c8e6;
+				}
+			}
 
-			/* add some margins and padding around everything */
-			margin: 0;
-			margin-left: auto;
-			margin-right: auto;
-			padding-left: 1rem;
-			padding-right: 1rem;
-			max-width: 70rem;
-		}
+			html {
+				font-family: "Ubuntu Mono", monospace;
+				color: var(--primary);
+				background-color: var(--bg);
 
-		body {
-			display: flex;
-			flex-direction: column;
-			min-height: 100vh;
-			margin: 0;
-		}
+				/* add some margins and padding around everything */
+				margin: 0;
+				margin-left: auto;
+				margin-right: auto;
+				padding-left: 1rem;
+				padding-right: 1rem;
+				max-width: 70rem;
+			}
 
-		a {
-			color: var(--link-active);
-			text-decoration: none;
-			border-bottom: 2px dotted var(--link-active);
-		}
+			body {
+				display: flex;
+				flex-direction: column;
+				min-height: 100vh;
+				margin: 0;
+			}
 
-		a:hover {
-			color: var(--link-hover);
-			border-bottom-color: var(--link-hover);
-		}
+			a {
+				color: var(--link-active);
+				text-decoration: none;
+				border-bottom: 2px dotted var(--link-active);
+			}
 
-		h1 {
-			font-size: 3rem;
-			margin-top: 0;
-			margin-bottom: 0.25em;
-		}
+			a:hover {
+				color: var(--link-hover);
+				border-bottom-color: var(--link-hover);
+			}
 
-		.body-sep {
-			flex-grow: 1;
-		}
-	</style>
+			h1 {
+				font-size: 3rem;
+				margin-top: 0;
+				margin-bottom: 0.25em;
+			}
+
+			.body-sep {
+				flex-grow: 1;
+			}
+
+			a:has(> span.icon-link) {
+				text-decoration: none;
+				border-bottom: none;
+			}
+
+			*:hover > a > span.icon-link {
+				opacity: 1;
+			}
+
+			span.icon-link {
+				opacity: 0;
+				margin-left: 10px;
+				text-decoration: none;
+			}
+
+			span.icon-link::before {
+				content: "#";
+			}
+		</style>
+	</body>
 </html>
