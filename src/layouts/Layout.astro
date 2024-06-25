@@ -1,0 +1,101 @@
+---
+import "@fontsource/ubuntu-mono/400.css";
+import "@fontsource/ubuntu-mono/700.css";
+
+import NavBar from "../components/NavBar.astro";
+import Footer from "../components/Footer.astro";
+
+interface PageProps {
+	title: string;
+}
+
+interface Props extends PageProps {
+	frontmatter?: PageProps;
+}
+
+const { title } = Astro.props.frontmatter || Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title} &bull; Joe Banks</title>
+	</head>
+	<body>
+		<NavBar />
+
+		<main>
+			<slot />
+		</main>
+
+		<div class="body-sep"></div>
+
+		<Footer />
+	</body>
+</html>
+
+<style is:global>
+	:root {
+		--link-active: #0070f3;
+		--link-hover: #6089d6;
+		--dimmed: #757575;
+		--primary: #111;
+		--bg: #fff;
+	}
+
+	@media (prefers-color-scheme: dark) {
+		:root {
+			--primary: #fff;
+			--bg: #111;
+			--link-active: #7998ff;
+			--link-hover: #a8c8e6;
+		}
+	}
+
+	html {
+		font-family: "Ubuntu Mono", monospace;
+		color: var(--primary);
+		background-color: var(--bg);
+
+		/* add some margins and padding around everything */
+		margin: 0;
+		margin-left: auto;
+		margin-right: auto;
+		padding-left: 1rem;
+		padding-right: 1rem;
+		max-width: 70rem;
+	}
+
+	body {
+		display: flex;
+		flex-direction: column;
+		min-height: 100vh;
+		margin: 0;
+	}
+
+	a {
+		color: var(--link-active);
+		text-decoration: none;
+		border-bottom: 2px dotted var(--link-active);
+	}
+
+	a:hover {
+		color: var(--link-hover);
+		border-bottom-color: var(--link-hover);
+	}
+
+	h1 {
+		font-size: 3rem;
+		margin-top: 0;
+		margin-bottom: 0.25em;
+	}
+
+	.body-sep {
+		flex-grow: 1;
+	}
+</style>

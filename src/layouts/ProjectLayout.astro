@@ -1,0 +1,25 @@
+---
+import Layout from "./Layout.astro";
+
+const { title, date, link } = Astro.props;
+---
+
+<Layout title={title}>
+    <a href="/">← Return home</a>
+    <div>
+        <h1>{title}</h1>
+        <span>{date} &bull; <a href={link}>{link}</a></span>
+
+        <slot />
+    </div>
+</Layout>
+
+<style>
+    span {
+        color: var(--dimmed);
+    }
+
+    h1 {
+        margin-top: 30px;
+    }
+</style>

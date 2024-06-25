@@ -1,0 +1,60 @@
+---
+const { project } = Astro.props;
+
+const COLORS = ["#C23B23", "#F39A27", "#03C03C", "#579ABE", "#976ED7"];
+
+const randomColor = () => {
+    return COLORS[Math.floor(Math.random() * COLORS.length)];
+};
+
+const color = randomColor();
+---
+
+<a class="projectLink" href={`/projects/${project.slug}`}>
+    <div class="innerCard">
+        <h2>{project.data.title}</h2>
+        <p>{project.data.description}</p>
+    </div>
+</a>
+
+<style define:vars={{ color }}>
+    .innerCard {
+        padding: 10px;
+        color: var(--primary);
+        border-width: 2px;
+        border-radius: 15px;
+        border-color: #ebebeb;
+        border-style: solid;
+        transition: all 0.3s ease;
+        height: 100%;
+    }
+
+    .innerCard:hover {
+        border-color: var(--color);
+        color: var(--color);
+    }
+
+    .projectLink {
+        text-decoration: none;
+        border-bottom: none;
+        padding-bottom: 30px;
+    }
+</style>
+
+<script>
+    const COLORS = ["#C23B23", "#F39A27", "#03C03C", "#579ABE", "#976ED7"];
+
+    const randomColor = () => {
+        return COLORS[Math.floor(Math.random() * COLORS.length)];
+    };
+
+    const projectLinks = document.querySelectorAll(".projectLink");
+
+    projectLinks.forEach((link) => {
+        link.addEventListener("mouseleave", () => {
+            const newCol = randomColor();
+            const card = link.querySelector(".innerCard")!;
+            card.setAttribute("style", `--color: ${newCol};`);
+        });
+    });
+</script>

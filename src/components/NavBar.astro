@@ -1,0 +1,45 @@
+---
+import { Image } from "astro:assets";
+import icon from "../images/icon.jpg";
+
+const pathname = new URL(Astro.request.url).pathname;
+const currentPath = pathname.slice(1);
+---
+
+<nav>
+    <Image src={icon} alt="icon" width="64" height="64" loading="eager" />
+    <a class={currentPath === "" ? "active" : ""} href="/">Home</a>
+    <a class={currentPath === "as211224" ? "active" : ""} href="/as211224"
+        >AS211224</a
+    >
+    <a class={currentPath === "posts" ? "active" : ""} href="/posts">Posts</a>
+</nav>
+
+<style>
+    nav {
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    nav a {
+        margin: 0 10px;
+        text-decoration: none;
+        color: inherit;
+        border-bottom: none;
+    }
+
+    nav a.active {
+        color: var(--link-active);
+    }
+
+    nav a:hover {
+        color: var(--link-hover);
+    }
+
+    nav img {
+        border-radius: 15%;
+        margin-right: 10px;
+    }
+</style>

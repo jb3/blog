@@ -1,0 +1,37 @@
+---
+const GITHUB_LINK = "https://github.com/jb3/blog";
+---
+
+<footer>
+    <span
+        >&copy; 2024 &bull; Built with {"\u2764\uFE0F"} by Joe Banks &bull; <a
+            href={GITHUB_LINK}>View on GitHub</a
+        ></span
+    >
+</footer>
+
+<style>
+    footer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50px;
+        background-color: var(--color-bg);
+        color: var(--color-text);
+        font-size: 0.9rem;
+    }
+
+    .spacer {
+        flex: 1;
+    }
+
+    footer a {
+        color: var(--color-text);
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    footer a:hover {
+        text-decoration: underline;
+    }
+</style>

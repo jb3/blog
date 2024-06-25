@@ -1,0 +1,21 @@
+---
+title: Python Discord
+date: 2017 to present
+link: https://pythondiscord.com
+description: Python Discord is a programming community with over 380,000 members from around the globe, I'm a Co-Founder and DevOps Lead for the community. I maintain the Kubernetes cluster which the Python Discord infrastructure resides on.
+---
+import Video from "../../components/Video.astro";
+
+Python Discord is a programming community with over 380,000 members from around the globe.
+
+As Co-Founder of Python Discord I'm responsible for maintaining the community and managing external collaborations with organisations such as the PSF as well as sponsorships with companies such as Linode, Sentry, Netlify and more.
+
+I also hold the role of DevOps Lead within Python Discord in which I maintain the Kubernetes cluster which the Python Discord infrastructure resides on. We use technologies such as Calico, CoreDNS, Prometheus, PostgreSQL and more to host over 50 applications for the Python Discord community ranging from our community site at pythondiscord.com to our moderation bot. Alongside our Kubernetes cluster we also have a selection of services deployed to baremetal boxes which are managed by Ansible.
+
+You can find out more about Python Discord at [pythondiscord.com](https://pythondiscord.com).
+
+You can find the full source code for our infrastructure in our [infra](https://github.com/python-discord/infra) repository. This contains all our Kubernetes manifests, as well as our Ansible playbooks. We also manage our DNS records within this repository which are deployed to Cloudflare with CI/CD.
+
+See below for a talk I did in July 2021 about the infrastructure at Python Discord:
+
+ <Video code="00CW1y-O8YQ" />
