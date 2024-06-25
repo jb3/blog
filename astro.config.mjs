@@ -8,14 +8,7 @@ import { pluginCollapsibleSections } from '@expressive-code/plugin-collapsible-s
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [expressiveCode({
-    plugins: [pluginCollapsibleSections()],
-  }), mdx()],
-  vite: {
-    ssr: {
-      noExternal: ['@astrojs/prism']
-    }
-  },
+  integrations: [expressiveCode(), mdx()],
   markdown: {
     syntaxHighlight: false,
     rehypePlugins: [[rehypeSlug, {}], [rehypeAutolinkHeadings, {
