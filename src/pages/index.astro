@@ -56,6 +56,11 @@ const projects = (await getCollection(
 	</p>
 
 	<Details summary="PGP Key" emoji={"\u{1F511}"}>
+		<p>
+			You can fetch the below key from <a href="/pgp.txt"
+				><code>https://jb3.dev/pgp.txt</code></a
+			> or copy the below public key block into your PGP client of choice.
+		</p>
 		<CodeBlock>{pgpKey}</CodeBlock>
 	</Details>
 
@@ -100,5 +105,17 @@ const projects = (await getCollection(
 			auto-fit,
 			minmax(min(100%/1, max(300px, 100%/3)), 1fr)
 		);
+	}
+
+	code {
+		background-color: #f4f4f4;
+		padding: 0.5em;
+		border-radius: 5px;
+	}
+
+	@media (prefers-color-scheme: dark) {
+		code {
+			background-color: #333;
+		}
 	}
 </style>
