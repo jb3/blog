@@ -1,9 +1,9 @@
 ---
 import { getCollection, type CollectionEntry } from "astro:content";
+import { Code } from "astro-expressive-code/components";
 
 import Layout from "../layouts/Layout.astro";
 import Details from "../components/Details.astro";
-import CodeBlock from "../components/CodeBlock.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 
 import pgpKey from "../../public/pgp.txt?raw";
@@ -61,7 +61,7 @@ const projects = (await getCollection(
 				><code>https://jb3.dev/pgp.txt</code></a
 			> or copy the below public key block into your PGP client of choice.
 		</p>
-		<CodeBlock>{pgpKey}</CodeBlock>
+		<Code code={pgpKey} />
 	</Details>
 
 	<h2>Projects</h2>

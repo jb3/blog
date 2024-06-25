@@ -4,7 +4,6 @@ date: 2021 to Present
 link: https://github.com/jb3/dns
 description: My DIY DNS project replaced the nameservers for jb3.dev with self-hosted BIND nameservers deployed using Ansible. It implements advanced DNS features like DNSSEC, including (fairly secure!) automatic key generation.
 ---
-import CodeBlock from "../../components/CodeBlock.astro";
 
 My DIY DNS project replaced the nameservers for jb3.dev with self-hosted BIND nameservers deployed using Ansible. It implements advanced DNS features like DNSSEC, including (fairly secure!) automatic key generation.
 
@@ -14,7 +13,7 @@ I'll eventually be writing a full blog post on how I set up this project, from h
 
 As an example, a DNS query for this domain, jb3.dev, will start at the DNS roots, progress to the `dev.` TLD nameservers and end up at one of the nameservers that serves the `jb3.dev.` zone. A nicer visualisation of the below dig command can be found [here](https://dns-lookup.jvns.ca/trace.html#jb3.dev).
 
-```shell
+```shell title="jb3.zone"
 $ dig +trace +nodnssec jb3.dev
 
 ; <<>> DiG 9.16.23 <<>> +trace +nodnssec jb3.dev
@@ -49,14 +48,6 @@ jb3.dev.		3600	IN	A	76.76.21.21
 jb3.dev.		3600	IN	NS	largo.jb3.dev.
 jb3.dev.		3600	IN	NS	zorin.jb3.dev.
 ;; Received 148 bytes from 89.58.0.80#53(largo.jb3.dev) in 30 ms
-```
-
-```elixir
-defmodule Dns do
-  def query(domain) do
-    IO.puts("Querying #{domain}...")
-  end
-end
 ```
 
 Note: DNSSEC has been omitted here for brevity, but you can see a visualisation of the DNSSEC zones [here](https://dnsviz.net/d/jb3.dev/dnssec/).

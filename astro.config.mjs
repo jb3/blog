@@ -1,13 +1,13 @@
 import { defineConfig } from 'astro/config';
-
 import mdx from "@astrojs/mdx";
-import rehypePrettyCode from 'rehype-pretty-code';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 
+import expressiveCode from "astro-expressive-code";
+
 // https://astro.build/config
 export default defineConfig({
-  integrations: [mdx()],
+  integrations: [expressiveCode(), mdx()],
   vite: {
     ssr: {
       noExternal: ['@astrojs/prism']
@@ -15,12 +15,8 @@ export default defineConfig({
   },
   markdown: {
     syntaxHighlight: false,
-    rehypePlugins: [
-      [rehypeSlug, {}],
-      [rehypeAutolinkHeadings, {
-        behavior: 'append',
-      }],
-      [rehypePrettyCode, {}],
-    ]
+    rehypePlugins: [[rehypeSlug, {}], [rehypeAutolinkHeadings, {
+      behavior: 'append'
+    }]]
   }
 });
