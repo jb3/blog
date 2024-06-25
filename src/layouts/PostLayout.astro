@@ -1,0 +1,35 @@
+---
+import Layout from "./Layout.astro";
+
+const { title, date, blurb, tags } = Astro.props;
+
+const formattedDate = new Date(date).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+});
+---
+
+<Layout title={title} description={blurb}>
+    <div>
+        <span>{formattedDate} &bull; {tags.join(", ")}</span>
+        <p class="byline">{blurb}</p>
+
+        <div class="content">
+            <slot />
+        </div>
+    </div>
+</Layout>
+
+<style>
+    span {
+        color: var(--dimmed);
+    }
+
+    .byline {
+        margin-top: 10px;
+        color: var(--dimmed);
+        font-weight: bolder;
+        font-size: 1.2em;
+    }
+</style>

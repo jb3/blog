@@ -2,9 +2,9 @@ import { defineConfig } from 'astro/config';
 import mdx from "@astrojs/mdx";
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import remarkToc from 'remark-toc';
 
 import expressiveCode from "astro-expressive-code";
-import { pluginCollapsibleSections } from '@expressive-code/plugin-collapsible-sections'
 
 // https://astro.build/config
 export default defineConfig({
@@ -13,6 +13,7 @@ export default defineConfig({
     syntaxHighlight: false,
     rehypePlugins: [[rehypeSlug, {}], [rehypeAutolinkHeadings, {
       behavior: 'append'
-    }]]
+    }]],
+    remarkPlugins: [remarkToc]
   }
 });

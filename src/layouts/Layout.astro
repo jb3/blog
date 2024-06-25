@@ -11,13 +11,15 @@ import Footer from "../components/Footer.astro";
 interface PageProps {
 	title: string;
 	description?: string;
+	hideTitle?: boolean;
 }
 
 interface Props extends PageProps {
 	frontmatter?: PageProps;
 }
 
-const { title, description } = Astro.props.frontmatter || Astro.props;
+const { title, description, hideTitle } =
+	Astro.props.frontmatter || Astro.props;
 
 const DEFAULT_DESCRIPTION =
 	"Hey! I'm Joe! I'm a Software & DevOps Engineer based in the UK, Co-Founder of Python Discord and a Fellow of the Python Software Foundation.";
@@ -49,6 +51,8 @@ const DEFAULT_DESCRIPTION =
 		<NavBar />
 
 		<main>
+			{hideTitle ? null : <h1 class="page-header">{title}</h1>}
+
 			<slot />
 		</main>
 
@@ -71,6 +75,7 @@ const DEFAULT_DESCRIPTION =
 					--bg: #111;
 					--link-active: #7998ff;
 					--link-hover: #a8c8e6;
+					--dimmed: #999999;
 				}
 			}
 
@@ -106,7 +111,7 @@ const DEFAULT_DESCRIPTION =
 				border-bottom-color: var(--link-hover);
 			}
 
-			h1 {
+			.page-header {
 				font-size: 3rem;
 				margin-top: 0;
 				margin-bottom: 0.25em;

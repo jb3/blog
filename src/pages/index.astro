@@ -13,8 +13,8 @@ const projects = (await getCollection(
 )) as CollectionEntry<"projects">[];
 ---
 
-<Layout title="Home">
-	<h1>Hey, I'm <span class="hero-name">Joe</span></h1>
+<Layout title="Home" hideTitle>
+	<h1 class="page-header">Hey, I'm <span class="hero-name">Joe</span></h1>
 
 	<p>
 		I'm a Software & DevOps Engineer based in the UK, and a Fellow of the
