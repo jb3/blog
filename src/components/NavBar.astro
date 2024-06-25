@@ -3,7 +3,11 @@ import { Image } from "astro:assets";
 import icon from "../images/icon.jpg";
 
 const pathname = new URL(Astro.request.url).pathname;
-const currentPath = pathname.slice(1);
+let currentPath = pathname.slice(1);
+
+if (currentPath[currentPath.length - 1] === "/") {
+    currentPath = currentPath.slice(0, -1);
+}
 ---
 
 <nav>
