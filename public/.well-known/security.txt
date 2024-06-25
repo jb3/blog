@@ -1,0 +1,4 @@
+Contact: mailto:joe@jb3.dev
+Expires: 2025-06-01T12:00:00.000Z
+Preferred-Languages: en
+Canonical: https://jb3.dev/.well-known/security.txt
