@@ -1,0 +1,78 @@
+---
+interface Props {
+    title: string;
+    level: "note" | "warning" | "danger";
+}
+
+const { title, level } = Astro.props;
+---
+
+<div class={`admonition level-${level}`}>
+    <p class="admonition-title">{title}</p>
+    <div class="admonition-content"><slot /></div>
+</div>
+
+<style is:inline>
+    .admonition {
+        padding: 1rem;
+        border-radius: 0.5rem;
+        margin: 1rem 0;
+    }
+
+    .admonition-title {
+        font-weight: bold;
+        margin: 0;
+        margin-bottom: 10px;
+    }
+
+    .admonition-content *:last-child {
+        margin: 0 !important;
+    }
+
+    .level-note {
+        background-color: #f0f0f0;
+        border: 1px solid #c0c0c0;
+    }
+
+    .level-warning {
+        background-color: #fff3cd;
+        border: 1px solid #ffeeba;
+    }
+
+    .level-danger {
+        background-color: #f8d7da;
+        border: 1px solid #f5c6cb;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        .level-danger {
+            background-color: #842029;
+            border: 1px solid #842029;
+        }
+
+        .level-warning {
+            background-color: #664d03;
+            border: 1px solid #664d03;
+        }
+
+        .level-note {
+            background-color: #1c1c1c;
+            border: 1px solid #1c1c1c;
+        }
+    }
+
+    .level-note .admonition-title::before {
+        content: "📝";
+        margin-right: 0.5rem;
+    }
+
+    .level-warning .admonition-title::before {
+        content: "⚠️";
+        margin-right: 0.5rem;
+    }
+
+    .level-danger .admonition-title::before {
+        content: "🚨";
+        margin-right: 0.5rem;
+    }
+</style>
