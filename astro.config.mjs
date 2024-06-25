@@ -4,10 +4,13 @@ import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 
 import expressiveCode from "astro-expressive-code";
+import { pluginCollapsibleSections } from '@expressive-code/plugin-collapsible-sections'
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [expressiveCode(), mdx()],
+  integrations: [expressiveCode({
+    plugins: [pluginCollapsibleSections()],
+  }), mdx()],
   vite: {
     ssr: {
       noExternal: ['@astrojs/prism']
