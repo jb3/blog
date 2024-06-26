@@ -39,15 +39,18 @@ const DEFAULT_DESCRIPTION =
 		<meta name="generator" content={Astro.generator} />
 		<meta name="twitter:creator" content="@JoeBanksDev" />
 		<meta name="og:image" content={siteLogo.src} />
-		<meta
-			name="twitter:description"
-			content={description ? description : DEFAULT_DESCRIPTION}
-		/>
-		<meta name="theme-color" content="#616283" />
-		<meta name="og:title" content={`${title} • Joe Banks`} />
-		<title>{title} • Joe Banks</title>
-		<ViewTransitions />
-	</head>
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:site" content="@JoeBanksDev" /></head
+	>
+	<meta
+		name="twitter:description"
+		content={description ? description : DEFAULT_DESCRIPTION}
+	/>
+	<meta name="theme-color" content="#616283" />
+	<meta name="og:title" content={`${title} • Joe Banks`} />
+	<title>{title} • Joe Banks</title>
+	<ViewTransitions />
+
 	<body>
 		<NavBar />
 
