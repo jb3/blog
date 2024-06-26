@@ -6,11 +6,29 @@ import Layout from "../layouts/Layout.astro";
 import Details from "../components/Details.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 
+import { formatDate } from "../utils/date";
+
 import pgpKey from "../../public/pgp.txt?raw";
 
 const projects = (await getCollection(
 	"projects",
 )) as CollectionEntry<"projects">[];
+
+const posts = (await getCollection("blog")) as CollectionEntry<"blog">[];
+
+const latestPosts = posts
+	.sort(
+		(a, b) =>
+			new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
+	)
+	.slice(0, 3)
+	.map((post) => ({
+		...post,
+		data: {
+			...post.data,
+			date: formatDate(post.data.date),
+		},
+	}));
 ---
 
 <Layout title="Home" hideTitle>
@@ -64,6 +82,21 @@ const projects = (await getCollection(
 		<Code code={pgpKey} />
 	</Details>
 
+	<h2>Latest Blog Posts</h2>
+
+	<ul class="recentPosts">
+		{
+			latestPosts.map((post) => (
+				<li>
+					<span>
+						<a href={`/posts/${post.slug}`}>{post.data.title}</a>{" "}
+						<span class="post-rest">{post.data.date}</span>
+					</span>
+				</li>
+			))
+		}
+	</ul>
+
 	<h2>Projects</h2>
 
 	<div class="projectsHolder">
@@ -107,9 +140,17 @@ const projects = (await getCollection(
 		);
 	}
 
-	@media (prefers-color-scheme: dark) {
-		code {
-			background-color: #333;
-		}
+	.recentPosts {
+		list-style-type: none;
+		padding: 0;
+	}
+
+	.recentPosts li {
+		margin-bottom: 10px;
+	}
+
+	.post-rest {
+		color: var(--dimmed);
+		font-style: italic;
 	}
 </style>
