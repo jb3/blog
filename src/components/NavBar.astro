@@ -11,7 +11,14 @@ if (currentPath[currentPath.length - 1] === "/") {
 ---
 
 <nav>
-    <Image src={icon} alt="icon" width="64" height="64" loading="eager" />
+    <Image
+        class="nav-icon"
+        src={icon}
+        alt="icon"
+        width="64"
+        height="64"
+        loading="eager"
+    />
     <a class={currentPath === "" ? "active" : ""} href="/">Home</a>
     <a class={currentPath === "as211224" ? "active" : ""} href="/as211224"
         >AS211224</a

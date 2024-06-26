@@ -1,0 +1,55 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { formatDate } from "../utils/date";
+import { getCollection, type CollectionEntry } from "astro:content";
+
+const posts = (await getCollection("blog")) as CollectionEntry<"blog">[];
+---
+
+<Layout title="Posts" description="A collection of posts">
+    Here you can find a collection of posts on various topics that I find
+    interesting. A lot of these are just me trying to figure out how to do
+    things, so they might not be the most polished pieces of writing, but I hope
+    you find them useful.
+
+    <ul>
+        {
+            posts.map((post) => (
+                <li class="blog-card">
+                    <h2>{post.data.title}</h2>
+                    <span>
+                        {formatDate(post.data.date)} &bull;{" "}
+                        {post.data.tags.join(", ")}
+                    </span>
+                    <p>{post.data.blurb}</p>
+                    <a href={`/posts/${post.slug}`}>Read more</a>
+                </li>
+            ))
+        }
+    </ul>
+</Layout>
+
+<style>
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    li {
+        margin-bottom: 1rem;
+    }
+
+    .blog-card h2 {
+        margin-top: 0;
+    }
+
+    .blog-card span {
+        font-style: italic;
+    }
+
+    .blog-card {
+        padding: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+</style>

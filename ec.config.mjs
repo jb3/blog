@@ -3,4 +3,7 @@ import { pluginCollapsibleSections } from '@expressive-code/plugin-collapsible-s
 
 export default defineEcConfig({
     plugins: [pluginCollapsibleSections()],
+    styleOverrides: {
+        codeFontFamily: "'Ubuntu Mono', monospace"
+    }
 })
