@@ -18,5 +18,6 @@ export default defineConfig({
       behavior: 'append'
     }]],
     remarkPlugins: [remarkToc]
-  }
+  },
+  site: "https://jb3.dev"
 });
