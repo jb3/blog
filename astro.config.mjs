@@ -3,15 +3,16 @@ import mdx from "@astrojs/mdx";
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import remarkToc from 'remark-toc';
-import embeds from "astro-embed/integration"
-
+import embeds from "astro-embed/integration";
 import expressiveCode from "astro-expressive-code";
+
+import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
   integrations: [expressiveCode(), embeds({
-    LinkPreview: false,
-  }), mdx()],
+    LinkPreview: false
+  }), mdx(), sitemap()],
   markdown: {
     syntaxHighlight: false,
     rehypePlugins: [[rehypeSlug, {}], [rehypeAutolinkHeadings, {
