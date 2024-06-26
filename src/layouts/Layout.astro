@@ -71,6 +71,7 @@ const DEFAULT_DESCRIPTION =
 				--dimmed: #757575;
 				--primary: #111;
 				--bg: #fff;
+				--code-background: #dddddd;
 			}
 
 			@media (prefers-color-scheme: dark) {
@@ -80,6 +81,7 @@ const DEFAULT_DESCRIPTION =
 					--link-active: #7998ff;
 					--link-hover: #a8c8e6;
 					--dimmed: #999999;
+					--code-background: #4e4e4e;
 				}
 			}
 
@@ -101,6 +103,18 @@ const DEFAULT_DESCRIPTION =
 			pre,
 			code {
 				font-family: "Ubuntu Mono", monospace;
+			}
+
+			code {
+				background-color: var(--code-background);
+				padding: 0.1em;
+				border-radius: 5px;
+				text-decoration: none;
+			}
+
+			a:has(> code) {
+				text-decoration: none;
+				border-bottom: none;
 			}
 
 			body {
