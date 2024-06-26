@@ -7,10 +7,12 @@ const posts = (await getCollection("blog")) as CollectionEntry<"blog">[];
 ---
 
 <Layout title="Posts" description="A collection of posts">
-    Here you can find a collection of posts on various topics that I find
+    <p>Here you can find a collection of posts on various topics that I find
     interesting. A lot of these are just me trying to figure out how to do
     things, so they might not be the most polished pieces of writing, but I hope
-    you find them useful.
+    you find them useful.</p>
+
+    <p>An RSS feed is available at <a href="/feed.xml"><code>/feed.xml</code></a>.</p>
 
     <ul>
         {
