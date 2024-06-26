@@ -46,6 +46,12 @@ const DEFAULT_DESCRIPTION =
 			name="twitter:description"
 			content={description ? description : DEFAULT_DESCRIPTION}
 		/>
+		<link
+			rel="alternate"
+			type="application/rss+xml"
+			title="Joe Banks"
+			href={new URL("feed.xml", Astro.site)}
+		/>
 		<meta name="theme-color" content="#616283" />
 		<meta name="og:title" content={`${title} • Joe Banks`} />
 		<title>{title} • Joe Banks</title>
