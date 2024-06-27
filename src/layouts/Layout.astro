@@ -24,6 +24,8 @@ const { title, description, hideTitle } =
 
 const DEFAULT_DESCRIPTION =
 	"Hey! I'm Joe! I'm a Software & DevOps Engineer based in the UK, Co-Founder of Python Discord and a Fellow of the Python Software Foundation.";
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
@@ -38,6 +40,7 @@ const DEFAULT_DESCRIPTION =
 		<link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="twitter:creator" content="@JoeBanksDev" />
+        <link rel="canonical" href={canonicalURL} />
 		<meta name="og:image" content={siteLogo.src} />
 		<meta name="twitter:image" content={`https://jb3.dev${siteLogo.src}`} />
 		<meta name="twitter:card" content="summary" />
