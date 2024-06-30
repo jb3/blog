@@ -54,7 +54,7 @@ def report_post_count() -> None:
 
 This is all the code necessary to create and ship off a metric to our Graphite instance.
 
-Under the hood, we use StatsD to collect these metrics and Graphite to store them. Our bots are configured with a statsd client which is namedspaced. We collect roughly 130k of these metric payloads per day from varying areas of our bot. We use a UDP transport for this data, which is fire-and-forget, meaning we don't have to wait for a response from the server.
+Under the hood, we use StatsD to collect these metrics and Graphite to store them. Our bots are configured with a statsd client which is namespaced. We collect roughly 130k of these metric payloads per day from varying areas of our bot. We use a UDP transport for this data, which is fire-and-forget, meaning we don't have to wait for a response from the server.
 
 Pros:
 - Easy to implement
