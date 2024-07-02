@@ -1,0 +1,54 @@
+name: Deploy site
+
+on:
+  push:
+    branches:
+    - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '22'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build
+      run: npm run build
+
+    - name: Tailscale
+      uses: tailscale/github-action@v2
+      with:
+          oauth-client-id: ${{ secrets.TAILSCALE_OAUTH_CLIENT_ID }}
+          oauth-secret: ${{ secrets.TAILSCALE_OAUTH_CLIENT_SECRET }}
+          tags: tag:ci
+
+    - name: Configure SSH
+      run: |
+        mkdir -p ~/.ssh/
+        echo "$SSH_KEY" > ~/.ssh/production.key
+        chmod 600 ~/.ssh/production.key
+        cat >>~/.ssh/config <<END
+        Host production
+          HostName $SSH_HOST
+          User ci
+          IdentityFile ~/.ssh/production.key
+          StrictHostKeyChecking no
+        END
+      env:
+        SSH_KEY: ${{ secrets.DEPLOYMENT_SSH_KEY }}
+        SSH_HOST: ${{ vars.DEPLOYMENT_HOST }}
+
+    - name: Deploy to deployment host
+      run: rsync -a --delete dist/ production:/usr/share/nginx/jb3.dev/
+
+    - name: Logout from Tailscale & delete ephemeral node
+      run: sudo tailscale logout
