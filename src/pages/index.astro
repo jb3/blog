@@ -61,7 +61,7 @@ const latestPosts = posts
 	</p>
 
 	<p>
-		I am also the administrator of the hobbyist <a href="/as211224"
+		I am also the administrator of the hobbyist <a href="/as211224/"
 			>AS211224</a
 		> network, a small, IPv6-only network that I use to experiment with BGP and
 		other networking technologies.
@@ -89,7 +89,7 @@ const latestPosts = posts
 			latestPosts.map((post) => (
 				<li>
 					<span>
-						<a href={`/posts/${post.slug}`}>{post.data.title}</a>{" "}
+						<a href={`/posts/${post.slug}/`}>{post.data.title}</a>{" "}
 						<span class="post-rest">{post.data.date}</span>
 					</span>
 				</li>
@@ -97,8 +97,8 @@ const latestPosts = posts
 		}
 
 		<li>
-			<br/>
-			<a href="/posts">View all posts</a>
+			<br />
+			<a href="/posts/">View all posts</a>
 		</li>
 	</ul>
 
