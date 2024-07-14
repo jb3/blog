@@ -13,7 +13,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Check-out (Production)
+        uses: actions/checkout@v4
+        if: github.event_name == 'push'
+
+      - name: Check-out (Staging)
+        uses: actions/checkout@v4
+        if: github.event_name == 'pull_request_target'
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -81,7 +89,7 @@ jobs:
     name: Deploy to Staging
     needs: [build]
     runs-on: ubuntu-latest
-    if: github.head_ref != 'refs/heads/main'
+    if: github.event_name == 'pull_request_target'
     environment:
       name: staging
       url: "https://${{ steps.slug.outputs.branch-name-slug }}.blog-staging.jb3.dev/"
