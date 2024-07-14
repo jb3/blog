@@ -11,6 +11,8 @@ I'll eventually be writing a full blog post on how I set up this project, from h
 
 `core.host.jb3.dev` and `rt1.host.jb3.dev` are the two authorative nameservers for `jb3.dev`, you can try them for yourself using [`dig`](https://linux.die.net/man/1/dig).
 
+I run these servers in a primary/secondary setup which allows for RFC2136 dynamic updates. This allows tools like certbot to create DNS records that are replicated to both DNS servers, which allows for the issuance of wildcard certificates with my custom DNS setup.
+
 As an example, a DNS query for this domain, jb3.dev, will start at the DNS roots, progress to the `dev.` TLD nameservers and end up at one of the nameservers that serves the `jb3.dev.` zone. A nicer visualisation of the below dig command can be found [here](https://dns-lookup.jvns.ca/trace.html#jb3.dev).
 
 ```shell title="jb3.zone" {31-34} collapse={6-17, 21-24}
