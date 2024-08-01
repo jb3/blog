@@ -3,7 +3,9 @@ import Layout from "../layouts/Layout.astro";
 import { formatDate } from "../utils/date";
 import { getCollection, type CollectionEntry } from "astro:content";
 
-const posts = (await getCollection("blog")) as CollectionEntry<"blog">[];
+const posts = ((await getCollection("blog")) as CollectionEntry<"blog">[]).sort(
+    (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
+);
 ---
 
 <Layout title="Posts" description="A collection of posts">
