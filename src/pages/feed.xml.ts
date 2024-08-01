@@ -12,7 +12,9 @@ export async function GET(context: { site: string; }) {
         // https://docs.astro.build/en/reference/api-reference/#contextsite
         site: context.site,
 
-        items: blog.map((post) => ({
+        items: blog.sort((a, b) => {
+            return new Date(b.data.date).getTime() - new Date(a.data.date).getTime();
+        }).map((post) => ({
             title: post.data.title,
             pubDate: post.data.date,
             description: post.data.blurb,
