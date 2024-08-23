@@ -1,6 +1,6 @@
 ---
 title: "PyDis Statistics Part 2: Analysis and Querying"
-date: 2024-08-01
+date: 2024-08-22
 tags:
 - python discord
 - devops
@@ -91,3 +91,54 @@ As demonstrated in the previous article, it is incredibly easy to add these drop
 ![Some metrics in our bot that are collected from Graphite](../../blog-assets/pydis-statistics-2-analysis/graphite-2.png)
 
 [^1]: Tags are predefined segments of text explaining common Python concepts (e.g. what `if __name__ == "__main__":` means), which users can have our bot relay into a channel to answer a FAQ.
+
+## Site and API Performance: Prometheus
+
+Again as covered in part 1 of the series, we use the fantastic `django-prometheus` package to collect performance data from our site and API.
+
+Prometheus scrapes directly from the site to capture metrics such as:
+- How many requests are being made to the site (and their method)
+- Response times for requests (categorised by endpoint)
+- Statistics on database query times
+- Statistics on cache hit rates
+- Statistics on number of database connections spawned
+
+All of this we can query using Grafana to monitor the overall performance of our API. We can also use this data in alerting (covered in a later blog post) to alert for any unexpected performance issues, we can do this granularly by endpoint or globally.
+
+![A Grafana query showing how Prometheus data is attached to our site performance data](../../blog-assets/pydis-statistics-2-analysis/django-grafana-1.png)
+
+I can't try to take credit for the specific dashboard used here, which was a community one made available [here](https://grafana.com/grafana/dashboards/17658-django/) on the Grafana dashboard repository.
+
+## Third-Party exporters
+
+We use a selection of other third-party exporters which export performance metrics about other components of our stack, these are listed [here](/posts/pydis-statistics-1-collection#third-party-services).
+
+Similar to the Django exporter, these allow us to capture performance data and other facts about our stack and query them in a centralised location, both for observability and alerting.
+
+Most of these exporters again use community provided dashboards which we have configured to our needs.
+
+![PostgreSQL exporter dashboard](../../blog-assets/pydis-statistics-2-analysis/exporters-postgres.png)
+
+All the data collected by these exporters and presented in these graphs is hooked into our alerting system, which will be covered in a later blog post.
+
+The data presented here is particularly useful in post-mortem analysis, you can find a post-mortem we performed a while ago [here](https://docs.pydis.wtf/post-mortems/2021/01/12/django-site-cpuram-exhaustion-outage.html), which was performed using data collected from these exporters.
+
+# Metabase
+
+Whilst not a direct part of the DevOps stack for infrastructure monitoring, a lot of non-technical members of staff use Metabase to query data from Metricity and our site API.
+
+This data allows users to create queries with a visual builder without touching any SQL, and present it in a variety of ways (e.g. tables, graphs, etc).
+
+This is used for event management, anti-spam, and community engagement queries.
+
+We can also prepare questions in SQL for non-technical users to fill in with variables, allowing them to perform more complex queries without needing to know SQL.
+
+![Metabase example query](../../blog-assets/pydis-statistics-2-analysis/metabase-1.png)
+
+# Conclusion
+
+Hopefully this article provides a little overview of the kind of data we collect, visualise, and the kinds of conclusions we can draw from it.
+
+Trying to convert a Discord community into actionable metrics, especially whilst preserving privacy, is a difficult task, but one that is incredibly rewarding when you can numerically measure the impact of changes you make.
+
+In the subsequent articles, we'll cover how we take this data and write alerts on it, for both the Discord and service side of our stack.
