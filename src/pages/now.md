@@ -23,7 +23,35 @@ performs some useful action in response to that. Our first e-mail service will
 give you `fortune`s! Send an e-mail to
 [fortune@int.pydis.wtf](mailto:fortune@int.pydis.wtf) to test it out.
 
+We've implemented Dovecot, Postfix, OpenDMARC, and OpenDKIM to make this
+possible. It's been a fun project to work on, and I'm excited to see where it
+goes.
 
+All data is backed by our new unified login system, powered by FreeIPA and
+Keycloak. This system allows us to have a single source of truth for all
+accounts, and we can now easily integrate new services into our ecosystem.
+
+Users are able to manage their own accounts, configure email forwarding, login
+securely to a variety of on-premises and cloud services, and more.
+
+## Owl Corp
+
+A few friends from Python Discord and I have started a new project called Owl
+Corp.
+
+We're building small utilities to try improve the quality-of-life of developers 
+with small  projects meant to have big impacts.
+
+A selection of interesting projects we've been working on include:
+
+- [**psql_extended**](https://github.com/owl-corp/psql_extended): A pre-built
+    Docker image with PostgreSQL installed, as well as a few handy extensions
+    for keeping database management simple.
+- [**inotify-base**](https://github.com/owl-corp/inotify-base): A Docker image
+    for use in Kubernetes sidecar containers, able to run a script
+    whenever a file changes (blog post on this coming soon!).
+- [**thallium**](https://github.com/owl-corp/thallium): A simple application to
+    handle giveaways for online communities backed by Printful.
 
 ## Programming
 
@@ -32,5 +60,6 @@ been a very pleasant experience, both for the website itself as well as
 development. As part of this migration, my website now has a blog, including a
 RSS feed, and this very page.
 
+<hr/>
 
-Updated August 16th, 2024, from my working desk.
+<sup>Updated August 23th, 2024, from the airport lounge.</sup>
