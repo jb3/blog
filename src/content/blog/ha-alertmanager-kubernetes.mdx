@@ -124,6 +124,8 @@ echo $PEER_ARGS > /tmp/peers
 
 As you can see the endpoint that makes it all work is the `/api/v1/namespaces/monitoring/pods` endpoint, which returns all pods in the `monitoring` namespace.
 
+This endpoint is part of the Kubernetes REST API that is exposed to all pods in the cluster automatically. You may need to grant the service account of your pod the correct permissions to access this endpoint, which is covered later.
+
 We filter by the `pod-template-hash` attribute, which is a label attached to all pods containing the hash component we discussed earlier.
 
 ```bash
