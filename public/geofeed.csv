@@ -1,0 +1,6 @@
+# prefix,country_code,region_code,city,postal
+2a0f:85c1:60::/48,US,US-NV,Groom Lake,840824
+2a0f:85c1:61::/48,GB,GB-WSM,Downing Street,SW1A 2AA
+2a0f:85c1:62::/48,GB,GB-NTT,Nottingham,NG8 2AE
+2a0f:85c1:63::/48,GB,GB-LBH,London,SE1 7TP
+2a0f:85c1:64::/48,GB,GB-CRF,Cardiff,CF10 1BH
