@@ -10,7 +10,7 @@ on:
 jobs:
   build:
     name: Build site
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Check-out (Production)
@@ -48,7 +48,7 @@ jobs:
     name: Deploy to Production
     needs: [build]
     if: ${{ (github.ref == 'refs/heads/main') && (github.event_name == 'push') }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     environment:
       name: production
       url: "https://jb3.dev/"
@@ -92,7 +92,7 @@ jobs:
   deploy-staging:
     name: Deploy to Staging
     needs: [build]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     if: github.event_name == 'pull_request_target'
     environment:
       name: staging
