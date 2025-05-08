@@ -1,6 +1,6 @@
 ---
 layout: ../layouts/Layout.astro
-title: Now (August 2024 edition)
+title: Now (May 2025 edition)
 description: My current focusses in life.
 ---
 
@@ -10,56 +10,49 @@ This page shows what I'm doing currently, if you have your own website, you
 
 ## Python Discord
 
-Our DevOps team has lately picked back up steam. As part of that, I have
-recently implemented a forwarding e-mail server using
-[Postfix](https://postfix.org), together with
-[postsrsd](https://github.com/roehling/postsrsd) this setup was delightful to
-configure.
+Our DevOps team has lately become dormant again. Our infrastructure is very
+functional these days, there are few things that need to change to keep it
+running. As such, most of our work these days is focussed on maintenance and
+replying to any support questions that come from our talented <!-- and
+completely expendable --> pool of helpers.
 
-I have also recently overhauled [our documentation](https://docs.pydis.wtf/),
-and we are currently exploring a new concept called "e-mail services". The idea
-is that you send an e-mail to specific addresses, and a script on the other end
-performs some useful action in response to that. Our first e-mail service will
-give you `fortune`s! Send an e-mail to
-[fortune@int.pydis.wtf](mailto:fortune@int.pydis.wtf) to test it out.
+A project I recently implemented in large part was our [numbers
+station](https://en.wikipedia.org/wiki/Numbers_station), which
+was primarily an exercise in audio processing. While I'm still preparing the
+changes for the review, the components used for it so far are:
 
-We've implemented Dovecot, Postfix, OpenDMARC, and OpenDKIM to make this
-possible. It's been a fun project to work on, and I'm excited to see where it
-goes.
+- Icecast acts as the streaming server, fronted by nginx.
+- VLC plays files placed in a directory to a virtual output.
+- ffmpeg takes audio from that virtual output and adds noise to it for the
+  authentic shortwave station feeling.
+- A systemd timer regularly plays any audio files placed in a directory.
+- Another systemd timer converts text files in a directory into audio played by
+  the previous cronjob. This allows server users to have custom texts spoken out
+  on air.
 
-All data is backed by our new unified login system, powered by FreeIPA and
-Keycloak. This system allows us to have a single source of truth for all
-accounts, and we can now easily integrate new services into our ecosystem.
+You may listen in at https://pydis.wtf/numbers. This also works via media
+players such as `vlc`, `mpv`, if you're feeling adventerous, you might even
+build a player with `ffmpeg`.
 
-Users are able to manage their own accounts, configure email forwarding, login
-securely to a variety of on-premises and cloud services, and more.
+Overall this was a lot of fun to build. I learnt about ffmpeg audio processing,
+configuration and deployment of Icecast, and covert spy information channels,
+something I hope to use on my upcoming visit to Canada.
+
 
 ## Owl Corp
 
-A few friends from Python Discord and I have started a new project called Owl
-Corp.
+At Owl Corp, we are working on a new e-mail server. So far we are still
+implementing the e-mail authentication protocols, though. Watch this space.
 
-We're building small utilities to try improve the quality-of-life of developers 
-with small  projects meant to have big impacts.
-
-A selection of interesting projects we've been working on include:
-
-- [**psql_extended**](https://github.com/owl-corp/psql_extended): A pre-built
-    Docker image with PostgreSQL installed, as well as a few handy extensions
-    for keeping database management simple.
-- [**inotify-base**](https://github.com/owl-corp/inotify-base): A Docker image
-    for use in Kubernetes sidecar containers, able to run a script
-    whenever a file changes (blog post on this coming soon!).
-- [**thallium**](https://github.com/owl-corp/thallium): A simple application to
-    handle giveaways for online communities backed by Printful.
 
 ## Programming
 
-I've recently rebuilt my website with [Astro](https://astro.build/) and it has
-been a very pleasant experience, both for the website itself as well as
-development. As part of this migration, my website now has a blog, including a
-RSS feed, and this very page.
+I don't have much time for programming these days - in my free time, I am
+primarily playing with electricity. My most recent project was hooking up an
+electric chair for a halloween project. Turns out that pacemakers don't work
+well with external voltages. This was a bit hard to explain to the police, but
+thankfully I have indemnity insurance.
 
 <hr/>
 
-<sup>Updated August 23th, 2024, from the airport lounge.</sup>
+<sup>Updated May 8th, 2025, from the rubber room. The rubber room with rats.</sup>
