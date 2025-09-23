@@ -1,6 +1,6 @@
 ---
 import siteLogo from "../images/icon.jpg";
-import { ViewTransitions } from "astro:transitions";
+import { ClientRouter } from "astro:transitions";
 
 import "@fontsource/roboto-slab/400.css";
 import "@fontsource/roboto-slab/500.css";
@@ -62,7 +62,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 		<meta name="theme-color" content="#616283" />
 		<meta name="og:title" content={`${title} • Joe Banks`} />
 		<title>{title} • Joe Banks</title>
-		<ViewTransitions />
+		<ClientRouter />
 	</head>
 	<body>
 		<NavBar />
