@@ -56,8 +56,9 @@ const latestPosts = posts
 	<p>
 		I'm co-founder of <a href="https://pythondiscord.com/">Python Discord</a
 		>, one of the largest programming communities on the planet with over
-		380,000 members. I also undertake the role of DevOps Lead for the
-		community, maintaining our Kubernetes and Ansible based infrastructure.
+		<span id="pydis-member-count">400,000</span> members. I also undertake the
+		role of DevOps Lead for the community, maintaining our Kubernetes and
+		Ansible based infrastructure.
 	</p>
 
 	<p>
@@ -159,3 +160,27 @@ const latestPosts = posts
 		font-style: italic;
 	}
 </style>
+
+<script>
+	async function fetchMemberCount() {
+		try {
+			const response = await fetch(
+				"https://discord.com/api/v10/invites/python?with_counts=true",
+			);
+			if (!response.ok) {
+				throw new Error("Network response was not ok");
+			}
+			const data = await response.json();
+			const memberCount = Math.floor(data.approximate_member_count / 1000) * 1000;
+			let obj = document.getElementById("pydis-member-count");
+
+			if (obj) {
+				obj.textContent = memberCount.toLocaleString();
+			}
+		} catch (error) {
+			console.error("Failed to fetch member count:", error);
+		}
+	}
+
+	fetchMemberCount();
+</script>
