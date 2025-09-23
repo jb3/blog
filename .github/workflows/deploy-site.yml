@@ -14,19 +14,19 @@ jobs:
 
     steps:
       - name: Check-out (Production)
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         if: github.event_name == 'push'
 
       - name: Check-out (Staging)
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         if: github.event_name == 'pull_request_target'
         with:
           ref: ${{ github.event.pull_request.head.sha }}
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
-          node-version: "22"
+          node-version: "24"
 
       - name: Install pnpm
         run: npm install -g pnpm
@@ -55,13 +55,13 @@ jobs:
 
     steps:
       - name: Download artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: site-build
           path: dist
 
       - name: Tailscale
-        uses: tailscale/github-action@v2
+        uses: tailscale/github-action@v3
         with:
           oauth-client-id: ${{ secrets.TAILSCALE_OAUTH_CLIENT_ID }}
           oauth-secret: ${{ secrets.TAILSCALE_OAUTH_CLIENT_SECRET }}
@@ -96,7 +96,7 @@ jobs:
     if: github.event_name == 'pull_request_target'
     environment:
       name: staging
-      url: "https://${{ steps.slug.outputs.branch-name-slug }}.blog-staging.jb3.dev/"
+      url: "https://${{ github.event.number }}--${{ steps.slug.outputs.branch-name-slug }}.blog-staging.jb3.dev/"
 
     steps:
       - name: Generate slug for deployment name
@@ -104,13 +104,13 @@ jobs:
         id: slug
 
       - name: Download artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: site-build
           path: dist
 
       - name: Tailscale
-        uses: tailscale/github-action@v2
+        uses: tailscale/github-action@v3
         with:
           oauth-client-id: ${{ secrets.TAILSCALE_OAUTH_CLIENT_ID }}
           oauth-secret: ${{ secrets.TAILSCALE_OAUTH_CLIENT_SECRET }}
@@ -133,7 +133,7 @@ jobs:
           SSH_HOST: ${{ vars.DEPLOYMENT_HOST }}
 
       - name: Deploy to deployment host
-        run: rsync -a --delete dist/ production:/usr/share/nginx/jb3.dev-staging/${{ steps.slug.outputs.branch-name-slug }}
+        run: rsync -a --delete dist/ production:/usr/share/nginx/jb3.dev-staging/${{ github.event.number }}--${{ steps.slug.outputs.branch-name-slug }}
 
       - name: Logout from Tailscale & delete ephemeral node
         run: sudo tailscale logout
