@@ -1,65 +1,64 @@
 ---
 layout: ../layouts/Layout.astro
-title: Now (August 2024 edition)
+title: Now (October 2025 edition)
 description: My current focusses in life.
 ---
 
 This page shows what I'm doing currently, if you have your own website, you
 [should make your own](https://nownownow.com/about) too.
 
+# Introduction
 
-## Python Discord
+It's been a while since I last updated this page, a lot has happened in the inbetween!
 
-Our DevOps team has lately picked back up steam. As part of that, I have
-recently implemented a forwarding e-mail server using
-[Postfix](https://postfix.org), together with
-[postsrsd](https://github.com/roehling/postsrsd) this setup was delightful to
-configure.
+I graduated from the University of Nottingham with a degree in Computer Science
+in July 2025. I've had a nice break over the summer, including a visit to Norway
+(highly recommended).
 
-I have also recently overhauled [our documentation](https://docs.pydis.wtf/),
-and we are currently exploring a new concept called "e-mail services". The idea
-is that you send an e-mail to specific addresses, and a script on the other end
-performs some useful action in response to that. Our first e-mail service will
-give you `fortune`s! Send an e-mail to
-[fortune@int.pydis.wtf](mailto:fortune@int.pydis.wtf) to test it out.
+# Python Discord
 
-We've implemented Dovecot, Postfix, OpenDMARC, and OpenDKIM to make this
-possible. It's been a fun project to work on, and I'm excited to see where it
-goes.
+Python Discord DevOps is still going strong, we've slowed down from rapidly adding
+features and moved to a more maintenance mode. We still have a lot of fun
+working on it, and I'm still very proud of what we've built.
 
-All data is backed by our new unified login system, powered by FreeIPA and
-Keycloak. This system allows us to have a single source of truth for all
-accounts, and we can now easily integrate new services into our ecosystem.
+I spent a lot of time working on the integration of our home-grown SSO solution,
+which includes SAML and LDAP support along with an integrated email system.
 
-Users are able to manage their own accounts, configure email forwarding, login
-securely to a variety of on-premises and cloud services, and more.
+Most of this activity is still ongoing in our [`infra`](https://github.com/python-discord/infra)
+repository if you are interested.
 
-## Owl Corp
+# Owl Corp
 
-A few friends from Python Discord and I have started a new project called Owl
-Corp.
+Myself, Chris and Johannes have been working on some projects for Owl Corp, our
+unincorporated holding zone for various personal projects.
 
-We're building small utilities to try improve the quality-of-life of developers 
-with small  projects meant to have big impacts.
+Chris and I have been working on `polonium`, a Discord ModMail bot written to replace
+some existing deprecated solutions. It's still in early development, but we're
+hoping to have a working version soon.
 
-A selection of interesting projects we've been working on include:
+Johannes and I have been working on a project called [`lithium`](https://github.com/owl-corp/lithium).
+We want to create a modern, high-performance mail authentication daemon (SPF, DKIM, DMARC).
+Hopefully we will end up with an all-in-one solution as opposed to the current fragmented landscape.
 
-- [**psql_extended**](https://github.com/owl-corp/psql_extended): A pre-built
-    Docker image with PostgreSQL installed, as well as a few handy extensions
-    for keeping database management simple.
-- [**inotify-base**](https://github.com/owl-corp/inotify-base): A Docker image
-    for use in Kubernetes sidecar containers, able to run a script
-    whenever a file changes (blog post on this coming soon!).
-- [**thallium**](https://github.com/owl-corp/thallium): A simple application to
-    handle giveaways for online communities backed by Printful.
+# NSTV & URN
 
-## Programming
+Graduating from University also brought the end of my tenure and involvement with
+*University Radio Nottingham* (URN) and *Nottingham Student TV* (NSTV). I had a great time working
+with both societies and made some lifelong friends.
 
-I've recently rebuilt my website with [Astro](https://astro.build/) and it has
-been a very pleasant experience, both for the website itself as well as
-development. As part of this migration, my website now has a blog, including a
-RSS feed, and this very page.
+I look forward to seeing where the new committees take both societies in the future, and I am ever
+thankful for the opportunities afforded to me during my time there. I am also looking forward to
+returning in future as an alumnus to help out where I can and deliver training.
+
+Both societies were a cornerstone of my university experience and are an extremely valuable asset
+to the University of Nottingham and University of Nottingham Students' Union.
+
+# What's next?
+
+I have an exciting new role lined up to start in December of 2025, which includes a move to London,
+nothing to announce publicly yet but keep an eye on my [LinkedIn](https://www.linkedin.com/in/joebanks3/)
+for the exciting news soon!
 
 <hr/>
 
-<sup>Updated August 23th, 2024, from the airport lounge.</sup>
+<sup>Updated October 4th, 2025, from the farmyard.</sup>
