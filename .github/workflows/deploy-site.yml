@@ -14,11 +14,11 @@ jobs:
 
     steps:
       - name: Check-out (Production)
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         if: github.event_name == 'push'
 
       - name: Check-out (Staging)
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         if: github.event_name == 'pull_request_target'
         with:
           ref: ${{ github.event.pull_request.head.sha }}
