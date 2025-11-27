@@ -1,10 +1,10 @@
 ---
 import Layout from "./Layout.astro";
 
-const { title, date, link, description } = Astro.props;
+const { title, date, link, description, noindex } = Astro.props;
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} noindex={noindex}>
     <span>{date} &bull; <a href={link}>{link}</a></span>
 
     <slot />

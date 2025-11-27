@@ -3,6 +3,8 @@ title: Jeremiah Boby
 date: 2001 to Present
 link: https://jerbob.me
 description: Jeremiah is my best friend, mentor, and personal pet project.
+noindex: true
+hidden: true
 ---
 
 # Why?

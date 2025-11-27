@@ -12,7 +12,9 @@ import sitemap from "@astrojs/sitemap";
 export default defineConfig({
   integrations: [expressiveCode(), embeds({
     LinkPreview: false
-  }), mdx(), sitemap()],
+  }), mdx(), sitemap({
+    filter: (page) => !page.includes('/projects/jeremiah-boby')
+  })],
   markdown: {
     syntaxHighlight: false,
     rehypePlugins: [[rehypeSlug, {}], [rehypeAutolinkHeadings, {

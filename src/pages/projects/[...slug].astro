@@ -15,6 +15,6 @@ const { entry }: { entry: CollectionEntry<"projects"> } = Astro.props;
 const { Content } = await entry.render();
 ---
 
-<ProjectLayout {...entry.data}>
+<ProjectLayout {...entry.data} noindex={entry.data.noindex} >
     <Content />
 </ProjectLayout>
