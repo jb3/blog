@@ -22,7 +22,9 @@ export function initMemberCount() {
 		}
 	}
 
-	fetchMemberCount();
+	document.addEventListener("astro:page-load", () => {
+		fetchMemberCount();
+	});
 }
 
 // Auto-initialize when script is loaded
