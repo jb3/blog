@@ -18,6 +18,10 @@ export function initKonamiCode() {
 		const hiddenCards = document.querySelectorAll(".hidden-project");
 		const isActivating = !document.body.classList.contains("easter-egg-active");
 
+		if (!isActivating) {
+			return;
+		}
+
 		// Store current positions of visible cards (FIRST)
 		const firstPositions = new Map<Element, { top: number; left: number }>();
 		allCards.forEach((card) => {
@@ -28,99 +32,51 @@ export function initKonamiCode() {
 		});
 
 		// Toggle the class
-		document.body.classList.toggle("easter-egg-active");
+		document.body.classList.add("easter-egg-active");
 
-		if (isActivating) {
-			void projectsHolder?.offsetHeight;
+		void projectsHolder?.offsetHeight;
 
-			// Get new positions (LAST)
-			const lastPositions = new Map<Element, { top: number; left: number }>();
-			allCards.forEach((card) => {
-				const rect = card.getBoundingClientRect();
-				lastPositions.set(card, { top: rect.top, left: rect.left });
-			});
+		// Get new positions (LAST)
+		const lastPositions = new Map<Element, { top: number; left: number }>();
+		allCards.forEach((card) => {
+			const rect = card.getBoundingClientRect();
+			lastPositions.set(card, { top: rect.top, left: rect.left });
+		});
 
-			// INVERT - apply inverse transform to make cards appear in old position
-			allCards.forEach((card) => {
-				const first = firstPositions.get(card);
-				const last = lastPositions.get(card);
+		// INVERT - apply inverse transform to make cards appear in old position
+		allCards.forEach((card) => {
+			const first = firstPositions.get(card);
+			const last = lastPositions.get(card);
 
-				if (first && last) {
-					const deltaX = first.left - last.left;
-					const deltaY = first.top - last.top;
-					(card as HTMLElement).style.transform = `translate(${deltaX}px, ${deltaY}px)`;
-					(card as HTMLElement).style.transition = "none";
-				}
-			});
-
-			// Prepare hidden cards for animation
-			hiddenCards.forEach((card) => {
-				(card as HTMLElement).style.opacity = "0";
-				(card as HTMLElement).style.transform = "scale(0.8)";
+			if (first && last) {
+				const deltaX = first.left - last.left;
+				const deltaY = first.top - last.top;
+				(card as HTMLElement).style.transform = `translate(${deltaX}px, ${deltaY}px)`;
 				(card as HTMLElement).style.transition = "none";
-			});
+			}
+		});
 
-			// Force reflow
-			void projectsHolder?.offsetHeight;
+		// Prepare hidden cards for animation
+		hiddenCards.forEach((card) => {
+			(card as HTMLElement).style.opacity = "0";
+			(card as HTMLElement).style.transform = "scale(0.8)";
+			(card as HTMLElement).style.transition = "none";
+		});
 
-			// PLAY - animate to final positions
-			allCards.forEach((card) => {
-				(card as HTMLElement).style.transition = "transform 0.4s ease, opacity 0.4s ease";
-				(card as HTMLElement).style.transform = "";
-			});
+		// Force reflow
+		void projectsHolder?.offsetHeight;
 
-			hiddenCards.forEach((card) => {
-				(card as HTMLElement).style.transition = "transform 0.4s ease 0.1s, opacity 0.4s ease 0.1s";
-				(card as HTMLElement).style.opacity = "1";
-				(card as HTMLElement).style.transform = "scale(1)";
-			});
-		} else {
-			// Hiding animation - fade out hidden cards first
-			hiddenCards.forEach((card) => {
-				(card as HTMLElement).style.transition = "transform 0.3s ease, opacity 0.3s ease";
-				(card as HTMLElement).style.opacity = "0";
-				(card as HTMLElement).style.transform = "scale(0.8)";
-			});
+		// PLAY - animate to final positions
+		allCards.forEach((card) => {
+			(card as HTMLElement).style.transition = "transform 0.4s ease, opacity 0.4s ease";
+			(card as HTMLElement).style.transform = "";
+		});
 
-			// After fade out, hide and animate remaining cards
-			setTimeout(() => {
-				hiddenCards.forEach((card) => {
-					(card as HTMLElement).style.display = "none";
-				});
-
-				// Get new positions after hiding
-				const lastPositions = new Map<Element, { top: number; left: number }>();
-				allCards.forEach((card) => {
-					if (!card.classList.contains("hidden-project")) {
-						const rect = card.getBoundingClientRect();
-						lastPositions.set(card, { top: rect.top, left: rect.left });
-					}
-				});
-
-				// Apply FLIP to non-hidden cards
-				allCards.forEach((card) => {
-					if (!card.classList.contains("hidden-project")) {
-						const first = firstPositions.get(card);
-						const last = lastPositions.get(card);
-						if (first && last) {
-							const deltaX = first.left - last.left;
-							const deltaY = first.top - last.top;
-							(card as HTMLElement).style.transform = `translate(${deltaX}px, ${deltaY}px)`;
-							(card as HTMLElement).style.transition = "none";
-						}
-					}
-				});
-
-				void projectsHolder?.offsetHeight;
-
-				allCards.forEach((card) => {
-					if (!card.classList.contains("hidden-project")) {
-						(card as HTMLElement).style.transition = "transform 0.4s ease";
-						(card as HTMLElement).style.transform = "";
-					}
-				});
-			}, 300);
-		}
+		hiddenCards.forEach((card) => {
+			(card as HTMLElement).style.transition = "transform 0.4s ease 0.1s, opacity 0.4s ease 0.1s";
+			(card as HTMLElement).style.opacity = "1";
+			(card as HTMLElement).style.transform = "scale(1)";
+		});
 	}
 
 	document.addEventListener("keydown", (e) => {
