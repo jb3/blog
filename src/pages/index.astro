@@ -18,7 +18,7 @@ const projects = (await getCollection(
 projects.sort((a, b) => {
 	if (a.data.hidden && !b.data.hidden) return -1;
 	if (!a.data.hidden && b.data.hidden) return 1;
-	return 0;
+	return a.data.title.localeCompare(b.data.title);
 });
 
 const posts = (await getCollection("blog")) as CollectionEntry<"blog">[];
