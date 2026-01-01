@@ -18,7 +18,7 @@
     "@fontsource/roboto-mono": "^5.2.8",
     "@fontsource/roboto-slab": "^5.2.8",
     "astro": "^5.13.10",
-    "astro-embed": "^0.9.1",
+    "astro-embed": "^0.10.0",
     "astro-expressive-code": "^0.41.3",
     "rehype-autolink-headings": "^7.1.0",
     "rehype-pretty-code": "^0.14.1",
@@ -30,5 +30,5 @@
   "devDependencies": {
     "@types/node": "^24.5.2"
   },
-  "packageManager": "pnpm@10.25.0"
+  "packageManager": "pnpm@10.27.0"
 }
