@@ -1,9 +1,8 @@
 -----BEGIN PGP PUBLIC KEY BLOCK-----
-Comment: User-ID:	Joe Banks <joe@jb3.dev>
-Comment: a.k.a.:	Joe Banks <joe.banks@nstv.co.uk>
-Comment: Valid from:	17/07/2023 17:04
-Comment: Fingerprint:	509CDFFC2D0783A33CF87D2B703EE21DE4D4D9C9
-
+Comment: User-ID:      Joe Banks <joe@jb3.dev>
+Comment: a.k.a.:	   Joe Banks <joe.banks@nstv.co.uk>
+Comment: Valid from:   17/07/2023 17:04
+Comment: Fingerprint:  509CDFFC2D0783A33CF87D2B703EE21DE4D4D9C9
 
 mDMEZLVmghYJKwYBBAHaRw8BAQdARPO/7yeCz0HKWXXHFcx+gcyWDTP6avX8i1qs
 SSNt71e0F0pvZSBCYW5rcyA8am9lQGpiMy5kZXY+iJYEExYKAD4CGwMFCwkIBwIC
