@@ -3,6 +3,7 @@ import mdx from "@astrojs/mdx";
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import remarkToc from 'remark-toc';
+import emoji from 'remark-emoji';
 import embeds from "astro-embed/integration";
 import expressiveCode from "astro-expressive-code";
 import webmanifest from "astro-webmanifest";
@@ -33,7 +34,7 @@ export default defineConfig({
     rehypePlugins: [[rehypeSlug, {}], [rehypeAutolinkHeadings, {
       behavior: 'append'
     }]],
-    remarkPlugins: [remarkToc]
+    remarkPlugins: [remarkToc, [emoji, {accessible: true}]],
   },
   site: "https://jb3.dev"
 });
