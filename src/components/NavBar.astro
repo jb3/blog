@@ -16,8 +16,10 @@ if (currentPath[currentPath.length - 1] === "/") {
         src={icon}
         alt="icon"
         quality="max"
-        width="256"
-        height="256"
+        width="80"
+        height="80"
+        quality="90"
+        densities={[1, 2, 3, 4]}
         loading="eager"
     />
     <a class={currentPath === "" ? "active" : ""} href="/">Home</a>
@@ -35,12 +37,6 @@ if (currentPath[currentPath.length - 1] === "/") {
         align-items: center;
         margin-bottom: 20px;
     }
-
-    nav .nav-icon {
-        width: 80px;
-        height: 80px;
-    }
-
     nav a {
         margin: 0 10px;
         text-decoration: none;
