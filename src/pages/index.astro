@@ -1,5 +1,6 @@
 ---
 import { getCollection, type CollectionEntry } from "astro:content";
+import {Content as Frontpage} from "../fragments/frontpage.mdx";
 import { Code } from "astro-expressive-code/components";
 
 import Layout from "../layouts/Layout.astro";
@@ -41,45 +42,7 @@ const latestPosts = posts
 <Layout title="Home" hideTitle>
 	<h1 class="page-header">Hey, I'm <span class="hero-name">Joe</span></h1>
 
-	<p>
-		I'm a Software & DevOps Engineer based in the UK, and a Fellow of the
-		Python Software Foundation.
-	</p>
-
-	<p>
-		I'm passionate about open-source software, automation, and building
-		communities. I'm always looking for new and exciting projects to work
-		on. I'm interested in a wide range of technologies, but I have a
-		particular fondness for Python, Kubernetes, and Ansible. I also am
-		interested in the nitty-gritty of how the internet works, and have a
-		particular fondness for DNS and BGP.
-	</p>
-
-	<p>
-		I work primarily in Python, but am also happy working in
-		JavaScript/TypeScript, Elixir, Golang or Erlang.
-	</p>
-
-	<p>
-		I'm co-founder of <a href="https://pythondiscord.com/">Python Discord</a
-		>, one of the largest programming communities on the planet with over
-		<span id="pydis-member-count">400,000</span> members. I also undertake the
-		role of DevOps Lead for the community, maintaining our Kubernetes and Ansible
-		based infrastructure.
-	</p>
-
-	<p>
-		I am also the administrator of the hobbyist <a href="/as211224/"
-			>AS211224</a
-		> network, a small, IPv6-only network that I use to experiment with BGP and
-		other networking technologies.
-	</p>
-
-	<p>
-		I'm best contacted via email, at <a href="mailto:joe@jb3.dev"
-			>joe@jb3.dev</a
-		>, preferably encrypted with the below PGP key.
-	</p>
+	<Frontpage />
 
 	<Details summary="PGP Key" emoji={"\u{1F511}"}>
 		<p>
