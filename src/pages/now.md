@@ -1,6 +1,6 @@
 ---
 layout: ../layouts/Layout.astro
-title: Now (October 2025 edition)
+title: Now (January 2026 edition)
 description: My current focusses in life.
 ---
 
@@ -9,56 +9,44 @@ This page shows what I'm doing currently, if you have your own website, you
 
 # Introduction
 
-It's been a while since I last updated this page, a lot has happened in the inbetween!
+**Happy New Year :fireworks:!** It's January 2026 as I write this, I'm home for a few weeks and
+thought it would be a good time to update this page with what I've been up to recently.
 
-I graduated from the University of Nottingham with a degree in Computer Science
-in July 2025. I've had a nice break over the summer, including a visit to Norway
-(highly recommended).
+# New Job
+
+In December, I started a new role at the BBC as a Software Engineer in the Media Distribution
+Analytics team.
+
+I'm really enjoying the new role so far, working with a great team on some interesting
+infrastructure challenges. I'm loving living in London for the first time as well, and our office
+at W1A is a great place to work.
+
+There is a (slightly old, but mostly still relevant) blog post about the work that we do in our team
+and the kinds of data we work with [on the BBC Digital Archive](https://www.bbc.co.uk/webarchive/https%3A%2F%2Fwww.bbc.co.uk%2Fblogs%2Finternet%2Fentries%2F3f76061d-3db2-4e47-bb9b-712716662a7f).
+
+# FOSDEM 2026
+
+I'll be attending [FOSDEM 2026](https://fosdem.org/2026/) later this month, my first time
+at FOSDEM, first time in Brussels and first conference in general for me! I'm looking forward to
+meeting up with friends and colleagues, and enjoying what looks to be a great lineup of talks.
+
+If you're attending, please do say hi!
 
 # Python Discord
 
-Python Discord DevOps is still going strong, we've slowed down from rapidly adding
-features and moved to a more maintenance mode. We still have a lot of fun
-working on it, and I'm still very proud of what we've built.
+Python Discord continues strongly, though I've had less time to allocate to it recently
+due to starting a new job. However, we have kept things up to date, including mitigating
+the recent MongoDB vulnerabilities and sprinkled upgrades elsewhere.
 
-I spent a lot of time working on the integration of our home-grown SSO solution,
-which includes SAML and LDAP support along with an integrated email system.
-
-Most of this activity is still ongoing in our [`infra`](https://github.com/python-discord/infra)
+Most of this activity is still ongoing in our [python-discord/infra](https://github.com/python-discord/infra)
 repository if you are interested.
-
-# Owl Corp
-
-Myself, Chris and Johannes have been working on some projects for Owl Corp, our
-unincorporated holding zone for various personal projects.
-
-Chris and I have been working on `polonium`, a Discord ModMail bot written to replace
-some existing deprecated solutions. It's still in early development, but we're
-hoping to have a working version soon.
-
-Johannes and I have been working on a project called [`lithium`](https://github.com/owl-corp/lithium).
-We want to create a modern, high-performance mail authentication daemon (SPF, DKIM, DMARC).
-Hopefully we will end up with an all-in-one solution as opposed to the current fragmented landscape.
-
-# NSTV & URN
-
-Graduating from University also brought the end of my tenure and involvement with
-*University Radio Nottingham* (URN) and *Nottingham Student TV* (NSTV). I had a great time working
-with both societies and made some lifelong friends.
-
-I look forward to seeing where the new committees take both societies in the future, and I am ever
-thankful for the opportunities afforded to me during my time there. I am also looking forward to
-returning in future as an alumnus to help out where I can and deliver training.
-
-Both societies were a cornerstone of my university experience and are an extremely valuable asset
-to the University of Nottingham and University of Nottingham Students' Union.
 
 # What's next?
 
-I have an exciting new role lined up to start in December of 2025, which includes a move to London,
-nothing to announce publicly yet but keep an eye on my [LinkedIn](https://www.linkedin.com/in/joebanks3/)
-for the exciting news soon!
+I have no concrete plans for the next few months, other than settling into my new role & new city.
+
+If you are London-based and would like to meet up for a coffee or a beer, please do get in touch!
 
 <hr/>
 
-<sup>Updated October 4th, 2025, from the farmyard.</sup>
+<sup>Updated January 3rd, 2026, from the penthouse.</sup>
