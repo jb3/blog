@@ -45,6 +45,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 		<link rel="canonical" href={canonicalURL} />
 		<meta name="og:image" content={siteLogo.src} />
 		<meta name="twitter:image" content={`https://jb3.dev${siteLogo.src}`} />
+		<meta name="fediverse:creator" content="@joebanks@mastodon.social">
 		<meta name="twitter:card" content="summary" />
 		<link rel="me" href="https://mastodon.social/@joebanks"/>
 		<meta name="twitter:site" content="@JoeBanksDev" />
