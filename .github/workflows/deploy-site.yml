@@ -129,7 +129,7 @@ jobs:
                   owner: context.repo.owner,
                   repo: context.repo.repo,
                   run_id: deploys.data.workflow_runs[0].id,
-                  environment_ids: [approvalData.data[0].environments[0].id],
+                  environment_ids: [approvalData.data[0].environment.id],
                   state: 'approved',
                   comment: 'Approved deployment to staging environment'
                 })
