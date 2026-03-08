@@ -111,7 +111,7 @@ jobs:
                 actor: 'renovate[bot]',
                 branch: context.payload.pull_request.head.ref,
                 status: 'waiting'
-              }
+              })
             };
 
             let attempts = 0;
