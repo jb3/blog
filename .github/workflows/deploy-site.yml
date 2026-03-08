@@ -99,6 +99,11 @@ jobs:
     runs-on: ubuntu-24.04
     if: github.event_name == 'pull_request_target'
 
+    permissions:
+      actions: write
+      deployments: write
+      contents: read
+
     steps:
       - name: Approve deployment to staging
         uses: actions/github-script@v8
