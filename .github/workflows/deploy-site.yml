@@ -101,7 +101,7 @@ jobs:
 
     steps:
       - name: Approve deployment to staging
-        uses: actions/github-script@v6
+        uses: actions/github-script@v8
         with:
           script: |
             const getGitHubDeploys = () => {
