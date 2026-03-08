@@ -125,6 +125,9 @@ jobs:
                   repo: context.repo.repo,
                   run_id: deploys.data.workflow_runs[0].id
                 })
+                // Delay for 30 seconds to ensure the review request is fully registered in GitHub before attempting to approve
+                await new Promise(resolve => setTimeout(resolve, 30000));
+
                 await github.rest.actions.reviewPendingDeploymentsForRun({
                   owner: context.repo.owner,
                   repo: context.repo.repo,
