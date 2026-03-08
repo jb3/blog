@@ -93,6 +93,57 @@ jobs:
       - name: Logout from Tailscale & delete ephemeral node
         run: sudo tailscale logout
 
+  approve-staging:
+    name: Approve Staging Deployment
+    needs: [build]
+    runs-on: ubuntu-24.04
+    if: github.event_name == 'pull_request_target'
+
+    steps:
+      - name: Approve deployment to staging
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const getGitHubDeploys = () => {
+              return await github.rest.actions.listWorkflowRunsForRepo({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                actor: 'renovate[bot]',
+                branch: context.payload.pull_request.head.ref,
+                status: 'waiting'
+              }
+            };
+
+            let attempts = 0;
+
+            while (true) {
+              const deploys = await getGitHubDeploys();
+              if (deploys.data.workflow_runs.length > 0) {
+                // Get review history
+                const approvalData = await github.rest.actions.getReviewsForRun({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  run_id: deploys.data.workflow_runs[0].id
+                })
+                await github.rest.actions.reviewPendingDeploymentsForRun({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  run_id: deploys.data.workflow_runs[0].id,
+                  environment_ids: [approvalData.data[0].environments[0].id],
+                  state: 'approved',
+                  comment: 'Approved deployment to staging environment'
+                })
+                break;
+              }
+              console.log('No deployment review request found, waiting for 10 seconds before checking again');
+              await new Promise(resolve => setTimeout(resolve, 10000));
+
+              attempts++;
+              if (attempts > 30) {
+                throw new Error('No deployment review request found after 5 minutes, failing the job');
+              }
+            }
+
   deploy-staging:
     name: Deploy to Staging
     needs: [build]
