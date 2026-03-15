@@ -81,7 +81,7 @@ jobs:
           SSH_HOST: ${{ vars.DEPLOYMENT_HOST }}
 
       - name: Deploy to deployment host
-        run: rsync -a --delete dist/ production:/var/www/jb3.dev/
+        run: rsync -a --delete dist/ production:jb3.dev/
 
   deploy-staging:
     name: Deploy to Staging
