@@ -18,7 +18,7 @@ export async function GET(context: { site: string; }) {
             title: post.data.title,
             pubDate: post.data.date,
             description: post.data.blurb,
-            link: `/posts/${post.slug}`,
+            link: `/posts/${post.id}`,
             categories: post.data.tags,
         }))
     });

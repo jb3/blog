@@ -32,7 +32,7 @@ const posts = ((await getCollection("blog")) as CollectionEntry<"blog">[]).sort(
                         {post.data.tags.join(", ")}
                     </span>
                     <p>{post.data.blurb}</p>
-                    <a href={`/posts/${post.slug}/`}>Read more</a>
+                    <a href={`/posts/${post.id}/`}>Read more</a>
                 </li>
             ))
         }

@@ -61,7 +61,7 @@ const latestPosts = posts
 			latestPosts.map((post) => (
 				<li>
 					<span>
-						<a href={`/posts/${post.slug}/`}>{post.data.title}</a>{" "}
+						<a href={`/posts/${post.id}/`}>{post.data.title}</a>{" "}
 						<span class="post-rest">{post.data.date}</span>
 					</span>
 				</li>

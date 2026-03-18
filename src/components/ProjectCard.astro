@@ -10,7 +10,7 @@ const randomColor = () => {
 const color = randomColor();
 ---
 
-<a class="projectLink" href={`/projects/${project.slug}/`} rel={project.data.hidden ? "nofollow" : null}>
+<a class="projectLink" href={`/projects/${project.id}/`} rel={project.data.hidden ? "nofollow" : null}>
     <div class="innerCard">
         <h2>{project.data.title}</h2>
         <p>{project.data.description}</p>
