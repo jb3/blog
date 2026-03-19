@@ -13,6 +13,7 @@ import pgpKey from "../../public/pgp.txt?raw";
 
 const projects = (await getCollection(
 	"projects",
+	({ data }) => !data.archived,
 )) as CollectionEntry<"projects">[];
 
 // Sort projects so hidden ones come first
@@ -21,6 +22,10 @@ projects.sort((a, b) => {
 	if (!a.data.hidden && b.data.hidden) return 1;
 	return a.data.title.localeCompare(b.data.title);
 });
+
+const archivedProjectsCount = (
+	await getCollection("projects", ({ data }) => data.archived)
+).length;
 
 const posts = (await getCollection("blog")) as CollectionEntry<"blog">[];
 
@@ -91,6 +96,14 @@ const latestPosts = posts
 			))
 		}
 	</div>
+
+	{
+		archivedProjectsCount > 0 && (
+			<p>
+				<a href="/projects/archived/">View archived projects</a>
+			</p>
+		)
+	}
 </Layout>
 
 <style>

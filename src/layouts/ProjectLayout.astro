@@ -1,13 +1,35 @@
 ---
 import Layout from "./Layout.astro";
+import Admonition from "../components/Admonition.astro";
 
-const { title, date, link, description, noindex } = Astro.props;
+const { title, date, link, description, noindex, archived } = Astro.props;
 ---
 
 <Layout title={title} description={description} noindex={noindex}>
-    <span>{date} &bull; <a href={link}>{link}</a></span>
+    <span>
+        {date}
+        {
+            link && (
+                <span>
+                    &bull;
+                    <a href={link}>{link}</a>
+                </span>
+            )
+        }</span
+    >
+
+    {
+        archived && (
+            <Admonition title="Archived Project" level="warning">
+                This project is retired and information here may no longer be
+                current.
+            </Admonition>
+        )
+    }
 
     <slot />
+
+    <a href="/">Return home</a>
 </Layout>
 
 <style>

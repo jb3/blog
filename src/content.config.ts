@@ -10,10 +10,11 @@ const projectsCollection = defineCollection({
   schema: z.object({
     title: z.string(),
     date: z.string(),
-    link: z.url(),
+    link: z.url().optional(),
     description: z.string(),
     noindex: z.boolean().default(false),
     hidden: z.boolean().default(false),
+    archived: z.boolean().default(false),
   }),
 });
 
