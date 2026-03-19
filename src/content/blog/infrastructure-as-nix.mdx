@@ -1,0 +1,111 @@
+---
+title: "Infrastructure as Nix: Migrating my Personal Infrastructure to NixOS"
+date: 2026-03-18
+tags:
+- nixos
+- devops
+- infrastructure
+- self-hosting
+blurb: I've recently moved my entire personal infrastructure to NixOS. This post explores the transition, the technical stack I'm using, and why Nix is a game-changer for self-hosting.
+---
+import Admonition from "../../components/Admonition.astro";
+
+# Table of Contents
+
+# Intro
+
+In March 2026, I migrated my personal infrastructure from several years of Ansible-managed servers to a fully declarative NixOS environment. While my previous setup worked, it was showing its age, and maintaining state across multiple machines was becoming increasingly complex to manage.
+
+The result of this migration is `nix-infra`, a single repository that defines every aspect of my infrastructure, from disk partitioning to DNS zones and Tor hidden services.
+
+In this post, I'll walk through the architecture of my new setup, the tools I'm using, and why I believe Nix is a great choice for folks looking for simple service orchestration for self-hosting.
+
+# The NixOS Philosophy
+
+At its core, NixOS is built on a simple yet powerful idea: your entire operating system should be a pure function of its configuration. Instead of mutating state (installing packages, editing files in `/etc`), you describe the desired state in a `.nix` file, and NixOS ensures the system matches that description.
+
+This brings several key benefits:
+- **Reproducibility**: I can spin up an identical server in minutes.
+- **Rollbacks**: If a change breaks something, I can instantly roll back to a previous working state from the boot menu.
+- **Declarative Secrets**: Using tools like `agenix`, I can manage encrypted secrets in Git without ever leaking them.
+
+# The Stack
+
+My `nix-infra` repository is structured as a Nix Flake, which provides a modern, standardized way to manage dependencies and outputs.
+
+<Admonition level="note" title="What are Nix Flakes?">
+Flakes are a relatively new (experimental but widely used) feature in Nix that provide a standardized format for Nix projects. They ensure that all dependencies are pinned and reproducible across different machines, resolving the "works on my machine" problem.
+</Admonition>
+
+## 1. disko: Declarative Disk Management
+
+One of the traditionally "messy" parts of server setup is disk partitioning and filesystem creation. [disko](https://github.com/nix-community/disko) solves this by allowing me to define my disk layout in Nix.
+
+Whether it's a simple ext4 partition or a complex ZFS setup with LUKS encryption, disko handles the formatting and mounting during the installation process.
+
+## 2. agenix: Secure Secret Management
+
+Managing secrets (API keys, passwords, certificates) in a public or even private Git repo is always a challenge. I use [agenix](https://github.com/ryantm/agenix), which allows me to encrypt secrets using SSH keys.
+
+The secrets are decrypted at runtime by the NixOS system, ensuring they never sit unencrypted in the Nix store.
+
+## 3. Knot DNS: Authoritative DNS from Nix
+
+I'm a big fan of [Knot DNS](https://www.knot-dns.cz/) for its performance and reliability. In my Nix setup, I manage my zones directly as Nix modules.
+
+One neat trick I've implemented is automatic serial number generation. Instead of manually updating the SOA serial every time I change a record, I use a hash of the zone file content:
+
+```nix
+let
+  zoneText = builtins.readFile ./zones/jb3.dev.zone;
+  zoneSerial = builtins.replaceStrings
+    [ "a"  "b"  "c"  "d"  "e"  "f" ]
+    [ "1"  "2"  "3"  "4"  "5"  "6" ]
+    (builtins.substring 0 9
+      (builtins.hashString "sha256" zoneText));
+in
+{
+  # ... Knot configuration using zoneSerial
+}
+```
+
+This ensures that any change to the zone file results in a new, effectively random serial number, which is enough to signal to secondaries that a change has occurred.
+
+Importantly, this does not change per-deployment but only when the zone file content changes, ensuring that it remains "pure" in the Nix sense.
+
+## 4. Nginx and Tor Integration
+
+My web server setup is fully declarative, including Nginx configuration and Tor onion services. One of the more interesting technical details is how these two services communicate securely.
+
+To keep things isolated, I use a Unix socket for the Tor hidden service to talk to Nginx. However, because both services use `PrivateTmp=true` for security, they normally can't see each other's `/tmp` directories.
+
+I solve this by using systemd's `JoinsNamespaceOf` feature. By having the Tor service join the Nginx namespace, it can see the Unix socket located in Nginx's private `/tmp`:
+
+```nix
+systemd.services.tor = {
+    unitConfig = {
+        JoinsNamespaceOf = [ "nginx.service" ];
+    };
+    serviceConfig.PrivateTmp = true;
+};
+```
+
+This allows for a clean, secure handoff between Tor and Nginx without exposing the socket to the rest of the system.
+
+# Deployment Workflow
+
+Deploying updates is as simple as running a single command from my local machine:
+
+```bash
+nix run .#deploy-odin
+```
+
+This uses `nixos-rebuild` to build the configuration locally (or on the target host) and switch to the new generation. If anything goes wrong, I can just as easily roll back.
+
+# Conclusion
+
+Moving to NixOS has significantly reduced the mental overhead of managing my infrastructure. I no longer worry about "configuration drift" or losing track of how a particular service was set up. Everything is documented, version-controlled, and reproducible.
+
+If you're tired of managing servers by hand, I highly recommend giving NixOS a look. It has a bit of a steep learning curve, but the reward once setup is worth it.
+
+You can find my infrastructure configuration in my [nix-infra](https://github.com/jb3/nix-infra) repository.

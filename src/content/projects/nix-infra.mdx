@@ -1,0 +1,19 @@
+---
+title: Personal NixOS Infrastructure
+date: March 2026 to Present
+link: https://github.com/jb3/nix-infra
+description: My personal infrastructure is now fully managed via NixOS and Flakes. This repository contains the declarative configuration for my servers, services (including this blog!), and networking.
+---
+
+In March 2026, I migrated my personal infrastructure from a decade of Ansible-managed servers to a fully declarative NixOS environment. This project, [nix-infra](https://github.com/jb3/nix-infra), serves as the single source of truth for everything I host.
+
+Key features of the setup include:
+- **Nix Flakes** for reproducible dependencies and outputs.
+- **`disko`** for declarative disk partitioning and filesystem management.
+- **`agenix`** for secure, SSH-based secret management.
+- **Knot DNS** for high-performance authoritative DNS, with hashed serial number generation.
+- **Tor Onion Services** with secure systemd namespace joining for Nginx integration.
+
+The entire infrastructure is deployed using `nixos-rebuild`, allowing for atomic updates and easy rollbacks.
+
+I've written a detailed blog post about this migration and the technical stack behind it, which you can find [here](/posts/infrastructure-as-nix).
